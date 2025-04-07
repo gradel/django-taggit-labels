@@ -3,10 +3,6 @@ from django.conf import settings
 
 from django.forms.utils import flatatt
 from django.utils.safestring import mark_safe
-try:
-    from django.utils import six
-except ImportError:
-    import six
 
 from taggit.models import Tag
 from taggit.utils import edit_string_for_tags
@@ -43,7 +39,7 @@ class LabelWidget(forms.TextInput):
         ]
 
     def format_value(self, value):
-        if value is not None and not isinstance(value, six.string_types):
+        if value is not None and not isinstance(value, str):
             value = edit_string_for_tags([tag for tag in value])
         return value
 
@@ -56,7 +52,7 @@ class LabelWidget(forms.TextInput):
 
         # Case in which a form is displayed with submitted but not saved
         # details, e.g. invalid form submission
-        elif isinstance(value, six.string_types):
+        elif isinstance(value, str):
             current_tags = [tag.strip(' "') for tag in value.split(",") if tag]
             formatted_value = value
             selected_tags = self.tag_list(current_tags)
