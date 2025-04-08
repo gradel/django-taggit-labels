@@ -1,8 +1,7 @@
 from django import forms
-from django.conf import settings
 
 from django.forms.utils import flatatt
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html, format_html_join
 
 from taggit.models import Tag
 from taggit.utils import edit_string_for_tags
@@ -68,25 +67,21 @@ class LabelWidget(forms.TextInput):
         )
         if attrs.get("class") is None:
             attrs.update({"class": "taggit-labels taggit-list"})
-        list_attrs = flatatt(attrs)
 
-        tag_li = "".join(
-            [
-                u"<li data-tag-name='{0}' class='{1}'>{0}</li>".format(tag[0], tag[1])
-                for tag in selected_tags
-            ]
+        tag_list_items = format_html_join(
+            "",
+            '<li data-tag-name="{name}" class="{class}">{name}</li>',
+            [{'name': tag[0], 'class': tag[1]} for tag in selected_tags]
         )
-        tag_ul = u"<ul{0}>{1}</ul>".format(list_attrs, tag_li)
-        return mark_safe(u"{0}{1}".format(tag_ul, input_field))
+        tag_ul = format_html(
+            "<ul{}>{}</ul>",
+            flatatt(attrs), tag_list_items,
+        )
+        return format_html("{}{}", tag_ul, input_field)
 
     @property
     def media(self):
-        extra = "" if settings.DEBUG else ".min"
-        admin_prefix = "admin/js"
         js = [
-            "%s/vendor/jquery/jquery%s.js" % (admin_prefix, extra),
-            "%s/jquery.init.js" % admin_prefix,
-            "%s/core.js" % admin_prefix,
             "taggit_labels/js/taggit_labels.js",
         ]
         css = {"all": ("taggit_labels/css/taggit_labels.css",)}
