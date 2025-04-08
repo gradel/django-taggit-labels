@@ -3,35 +3,29 @@
 //
 // When the internal array changes, it should write out a new tag list to the hidden input
 
-(function($) {
-    $(document).ready(function() {
-        $(".taggit-labels").closest("div").each(function(i) {
-            var inputs = $(this).find(".taggit-labels + input")[0];
-            var tagItems = $(this).find(".taggit-list .taggit-tag");
-            var tagList = inputs.value.split(", ");
-            tagItems.click(function() {
-                var tagList = inputs.value.split(", ");
-                var tagName = $(this).attr("data-tag-name");
-
-                // Tag names need to be quotes if they contain commas or quotation marks
+document.addEventListener("DOMContentLoaded", () => {
+    var elems = document.getElementsByClassName("taggit-labels")
+    for (var i = 0; i < elems.length; i++) {
+        let e1 = elems[i].closest("div")
+        let inputs = e1.querySelectorAll(".taggit-labels + input")[0];
+        let tagItems = e1.querySelectorAll(".taggit-list .taggit-tag");
+        tagItems.forEach(function(t) {
+            t.addEventListener('click', function() {
+                let tagList = inputs.value ? inputs.value.split(", ") : []
+                let tagName = this.getAttribute("data-tag-name");
                 if(tagName.indexOf(",") != -1 || tagName.indexOf(" ") != -1) {
                     tagName = "\"" + tagName + "\"";
                 }
-
-                var index = $.inArray(tagName, tagList);
-                // Add the selected tag to the list of tags if it wasn't there previously
-                // and remove it if it was present.
+                let index = tagList.indexOf(tagName);
                 if(index == -1) {
-                    $(this).toggleClass("selected");
+                    this.classList.toggle("selected");
                     tagList.push(tagName);
                 } else {
-                     $(this).toggleClass("selected");
-                     tagList.splice(index, 1);
+                    this.classList.toggle("selected");
+                    tagList.splice(index, 1);
                 }
-
-                // Refresh the tag list
-                $(inputs).attr("value", tagList.join(", "));
+                inputs.setAttribute("value", tagList.join(", "));
             });
         });
-    });
-})(jQuery || django.jQuery);
+    }
+});
