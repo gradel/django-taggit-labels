@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import os
 import sys
@@ -36,7 +35,7 @@ setup(
     ],
     include_package_data=True,
     install_requires=[
-        'django-taggit>=0.17.0',
+        'django-taggit>=1.0.0',
     ],
     license="BSD",
     zip_safe=False,
@@ -47,8 +46,6 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',

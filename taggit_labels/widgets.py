@@ -33,7 +33,10 @@ class LabelWidget(forms.TextInput):
         with tag lists built from forms not fully submitted.
         """
         return [
-            (tag.name, "selected taggit-tag" if tag.name in tags else "taggit-tag")
+            (
+                tag.name,
+                "selected taggit-tag" if tag.name in tags else "taggit-tag",
+            )
             for tag in self.model.objects.all()
         ]
 
