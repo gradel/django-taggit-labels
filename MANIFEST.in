@@ -1,6 +1,2 @@
-include AUTHORS.rst
-include CONTRIBUTING.rst
-include HISTORY.rst
-include LICENSE
-include README.rst
-recursive-include taggit_labels *.html *.png *.gif *js *.css *jpg *jpeg *svg *py
+recursive-include src/taggit_labels/static *
+
