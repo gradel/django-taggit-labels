@@ -1,5 +1,5 @@
 """
-Configuration file for py.test
+Configuration file for pytest
 """
 
 import django
@@ -25,8 +25,4 @@ def pytest_configure():
         MIDDLEWARE_CLASSES=(),
         SITE_ID=1,
     )
-    try:
-        django.setup()
-    except AttributeError:
-        # Django 1.7 or lower
-        pass
+    django.setup()
