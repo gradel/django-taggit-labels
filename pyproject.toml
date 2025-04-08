@@ -20,16 +20,9 @@ classifiers=[
     'Development Status :: 5 - Production/Stable',
 ]
 requires-python = ">= 3.10"
-# dynamic = ["version"]
 dependencies = [
     "Django>=5.2",
     'django-taggit>=0.17.0',
-]
-
-[dependency-groups]
-dev = [
-    "pytest",
-    "setuptools",
 ]
 
 [project.urls]
@@ -39,14 +32,3 @@ dev = [
 [build-system]
 requires = ["setuptools >= 61.0"]
 build-backend = "setuptools.build_meta"
-
-# [tool.uv]
-# managed = true
-# dev-dependencies = [
-#     "tox~=4.6",
-#     "tox-rye @ git+https://github.com/bluss/tox-rye.git@0.3.0",
-# ]
-
-# [tool.pytest.ini_options]
-# DJANGO_SETTINGS_MODULE = "tests.test_app.settings"
-# pythonpath = "tests"
