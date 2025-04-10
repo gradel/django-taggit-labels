@@ -25,6 +25,9 @@ dependencies = [
     'django-taggit>=0.17.0',
 ]
 
+[dependency-groups]
+dev = ["pytest-django"]
+
 [project.urls]
 "Source code" = "https://github.com/gradel/django-taggit-labels"
 "Issue tracker" = "https://github.com/gradel/django-taggit-labels/issues"

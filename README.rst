@@ -76,3 +76,25 @@ You can use the widget with `your own tag model
         tags = TagField(required=False, widget=LabelWidget(model=MyTag))
 
 The `tag` model from taggit will be presumed if you do not specify a tag model.
+
+Development (using uv https://docs.astral.sh/uv/)
+-------------------------------------------------
+
+Install development dependencies
+
+.. code-block:: bash
+
+    uv sync
+
+Run tests
+
+.. code-block:: bash
+
+    uv run pytest tests
+
+Build wheel and source distribution
+
+.. code-block:: bash
+
+    uv build
+

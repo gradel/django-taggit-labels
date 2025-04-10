@@ -1,4 +1,0 @@
-Sphinx
-tox
-wheel
-twine
